@@ -25,7 +25,7 @@ public class GoodsResult {
     public GoodsResult(String data) {
         this.state = 1;
 
-        this.message = "ok";
+        this.message = data;
     }
 
     public GoodsResult(String errorCode, String errorMessage) {

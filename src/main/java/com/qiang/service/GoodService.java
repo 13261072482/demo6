@@ -1,7 +1,10 @@
 package com.qiang.service;
 
 
-import com.qiang.product.entity.GoodsEntity;
+import com.qiang.dao.entity.GoodsEntity;
+import com.qiang.dao.entity.GoodsQueryParamEntity;
+
+import java.util.List;
 
 /**
  * Created by maxrocky on 2017/10/25.
@@ -17,10 +20,18 @@ public interface GoodService {
     /**
      * 查询商品
      */
-    GoodsEntity select();
-
+    List<GoodsEntity> select();
+    /**
+     * 查询商品
+     */
+    List<GoodsEntity> selectOption(GoodsQueryParamEntity goodsEntity);
     /**
      * 修改商品价格
      */
     void updatePrice(GoodsEntity goodsEntity);
+
+    /**
+     * 删除一个商品
+     */
+    void deleteGoods(Integer gid);
 }

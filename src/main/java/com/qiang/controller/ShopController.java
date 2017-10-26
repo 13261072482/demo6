@@ -1,19 +1,17 @@
-package com.qiang.controller;/**
+package com.qiang.controller;
+/**
  * Created by maxrocky on 2017/10/25.
  */
 
 import com.qiang.common.GoodsResult;
-import com.qiang.product.GoodsMapper;
-import com.qiang.product.entity.GoodsEntity;
+import com.qiang.dao.entity.GoodsEntity;
+import com.qiang.dao.entity.GoodsQueryParamEntity;
 import com.qiang.service.GoodService;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
-import java.lang.invoke.MethodHandle;
-import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * @author maxrocky
@@ -32,7 +30,7 @@ public class ShopController {
      */
     @RequestMapping(value = "/addGoods", method = RequestMethod.POST)
     @ResponseBody
-    public GoodsResult add( GoodsEntity goodsEntity) {
+    public GoodsResult add(GoodsEntity goodsEntity) {
         goodService.add(goodsEntity);
         return new GoodsResult("ok");
     }
@@ -44,8 +42,19 @@ public class ShopController {
      */
     @RequestMapping(value = "/selectGoods", method = RequestMethod.GET)
     @ResponseBody
-    public GoodsEntity select() {
+    public List<GoodsEntity> select() {
         return goodService.select();
+    }
+
+    /**
+     * 查询商品
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selectGoodsOption", method = RequestMethod.GET)
+    @ResponseBody
+    public List<GoodsEntity> selectOption(GoodsQueryParamEntity goodsEntity) {
+        return goodService.selectOption(goodsEntity);
     }
 
     /**
@@ -56,6 +65,16 @@ public class ShopController {
     public GoodsResult updatePrice(GoodsEntity goodsEntity) {
         goodService.updatePrice(goodsEntity);
         return new GoodsResult("ok");
+    }
+
+    /**
+     * 删除商品
+     */
+    @RequestMapping(value = "deleteGoods", method = RequestMethod.POST)
+    @ResponseBody
+    public GoodsResult deleteGoods(Integer gid) {
+        goodService.deleteGoods(gid);
+        return new GoodsResult("删除成功");
     }
 
 }

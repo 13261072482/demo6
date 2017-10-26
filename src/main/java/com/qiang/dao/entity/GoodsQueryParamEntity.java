@@ -1,4 +1,4 @@
-package com.qiang.product.entity;
+package com.qiang.dao.entity;
 /**
  * Created by maxrocky on 2017/10/25.
  */
@@ -16,27 +16,20 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GoodsEntity {
-    //商品ID
-    private Integer gid;
-
+public class GoodsQueryParamEntity {
     //商品名称
     private String gname;
 
-    //价格
-    private Integer gprice;
+    //最大价格
+    private Integer maxPrice;
 
-    //评论
-    private List<DiscussEntity> discuss;
+    //最小价格
+    private Integer minPrice;
 
     //描述
     private String gdetail;
 
     //发货地
     private String gaddress;
-
-    //轮播图列表
-    private List<BannerEntity> banner;
-
 
 }

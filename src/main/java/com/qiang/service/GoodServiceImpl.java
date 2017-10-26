@@ -4,11 +4,15 @@ package com.qiang.service;
  */
 
 
-import com.qiang.product.GoodsMapper;
-import com.qiang.product.entity.GoodsEntity;
+import com.qiang.dao.DiscussMapper;
+import com.qiang.dao.GoodsMapper;
+import com.qiang.dao.entity.GoodsEntity;
+import com.qiang.dao.entity.GoodsQueryParamEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 
 /**
  * @author maxrocky
@@ -21,20 +25,33 @@ public class GoodServiceImpl implements GoodService {
     @Resource
     GoodsMapper goodsMapper;
 
+    @Resource
+    DiscussMapper discussMapper;
+
     @Override
     public void add(GoodsEntity goodsEntity) {
         goodsMapper.add(goodsEntity);
-        System.out.println("已经进入添加商品serice");
     }
 
     @Override
-    public GoodsEntity select() {
-        System.out.println("查询商品中");
+    public List<GoodsEntity> select() {
         return goodsMapper.select();
+    }
+
+    @Override
+    public List<GoodsEntity> selectOption(GoodsQueryParamEntity goodsEntity) {
+//        goodsEntity.setGname("%" + goodsEntity.getGname() + "%");
+
+        return goodsMapper.selectOption(goodsEntity);
     }
 
     @Override
     public void updatePrice(GoodsEntity goodsEntity) {
         goodsMapper.updatePrice(goodsEntity);
+    }
+
+    @Override
+    public void deleteGoods(Integer gid) {
+        goodsMapper.deleteGoods(gid);
     }
 }
