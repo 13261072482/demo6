@@ -1,7 +1,6 @@
 package com.qiang.dao;
 
 import com.qiang.dao.entity.BannerEntity;
-import com.qiang.dao.entity.DiscussEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -17,4 +16,6 @@ public interface BannerMapper {
      */
     @Select("select * from banner where gid = #{gid}")
     List<BannerEntity> getBanners(Integer gid);
+
+
 }

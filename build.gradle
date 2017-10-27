@@ -32,6 +32,8 @@ dependencies {
     compile("com.alibaba:druid:1.0.23")
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    compile 'io.springfox:springfox-swagger-ui:2.2.2'
-    compile 'io.springfox:springfox-swagger2:2.2.2'
+    compile("io.springfox:springfox-swagger-ui:2.6.0")
+    compile("io.springfox:springfox-swagger2:2.6.0")
+    compile("io.springfox:springfox-staticdocs:2.6.0")
+    //swagger
 }

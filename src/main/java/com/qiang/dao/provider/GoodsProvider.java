@@ -4,7 +4,7 @@ package com.qiang.dao.provider;
  */
 
 
-import com.qiang.dao.entity.GoodsQueryParamEntity;
+import com.qiang.service.dto.request.GoodsSearchDto;
 import org.apache.ibatis.jdbc.SQL;
 
 /**
@@ -16,30 +16,28 @@ public class GoodsProvider {
     /**
      * 动态查询模糊查询的sql语句
      */
-    public String selectByParam(final GoodsQueryParamEntity goodsEntity) {
+    public String selectByParam(final GoodsSearchDto goodsEntity) {
         return new SQL() {{
             String condition = "gstatus = 1 ";
             SELECT("*");
             FROM("goods");
-            if (goodsEntity.getGname() != null) {
+            if (goodsEntity.getGname() != null && !"".equals(goodsEntity.getGname())) {
                 goodsEntity.setGname("%" + goodsEntity.getGname() + "%");
                 condition += "and gname like #{gname} ";
             }
-            if (goodsEntity.getGdetail() != null) {
+            if (goodsEntity.getGdetail() != null && !"".equals(goodsEntity.getGdetail())) {
                 goodsEntity.setGdetail("%" + goodsEntity.getGdetail() + "%");
                 condition += "and gdetail like #{gdetail} ";
             }
-            if (goodsEntity.getGaddress() != null) {
+            if (goodsEntity.getGaddress() != null && !"".equals(goodsEntity.getGaddress())) {
                 goodsEntity.setGaddress("%" + goodsEntity.getGaddress() + "%");
                 condition += "and gaddress like #{gaddress} ";
             }
             if (goodsEntity.getMinPrice() != null && goodsEntity.getMaxPrice() != null
                     && goodsEntity.getMinPrice() <= goodsEntity.getMaxPrice()) {
-               condition += "and gprice between #{minPrice} and #{maxPrice}";
+                condition += "and gprice between #{minPrice} and #{maxPrice}";
             }
             WHERE(condition);
         }}.toString();
     }
-
-
 }

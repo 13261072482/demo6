@@ -21,7 +21,7 @@ public class GoodsQueryParamEntity {
     private String gname;
 
     //最大价格
-    private Integer maxPrice;
+    private Integer maxprice;
 
     //最小价格
     private Integer minPrice;

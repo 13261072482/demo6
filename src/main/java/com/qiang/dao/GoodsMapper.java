@@ -2,8 +2,10 @@ package com.qiang.dao;
 
 
 import com.qiang.dao.entity.GoodsEntity;
-import com.qiang.dao.entity.GoodsQueryParamEntity;
 import com.qiang.dao.provider.GoodsProvider;
+import com.qiang.service.dto.request.GoodsDto;
+import com.qiang.service.dto.request.GoodsSearchDto;
+import com.qiang.service.dto.request.PriceUpdateDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public interface GoodsMapper {
      */
     @Insert("insert into goods (gname, gprice, gdetail, gaddress) values (#{gname}, #{gprice}, #{gdetail}, #{gaddress})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void add(GoodsEntity goodsEntity);
+    void add(GoodsDto goodsEntity);
 
     /**
      * 普通查询商品信息
@@ -49,7 +51,7 @@ public interface GoodsMapper {
             @Result(property = "banner", column = "gid", many = @Many(select = "com.qiang.dao.BannerMapper.getBanners"))
 
     })
-    List<GoodsEntity> selectOption(GoodsQueryParamEntity goodsEntity);
+    List<GoodsEntity> selectOption(GoodsSearchDto goodsEntity);
 
 
     /**
@@ -58,11 +60,13 @@ public interface GoodsMapper {
      * @param goodsEntity
      */
     @Update("update goods gprice set gprice = #{gprice} where gid = #{gid}")
-    void updatePrice(GoodsEntity goodsEntity);
+    void updatePrice(PriceUpdateDto goodsEntity);
 
     /**
      * 软删除一个商品
      */
     @Update("update goods gstatus set gstatus = 0 where gid = #{gid}")
     void deleteGoods(Integer gid);
+    @Select("select * from goods where gid = #{gid} and gstatus = 1")
+    GoodsEntity queryGoodById(Integer gid);
 }

@@ -3,6 +3,9 @@ package com.qiang.service;
 
 import com.qiang.dao.entity.GoodsEntity;
 import com.qiang.dao.entity.GoodsQueryParamEntity;
+import com.qiang.service.dto.request.GoodsDto;
+import com.qiang.service.dto.request.GoodsSearchDto;
+import com.qiang.service.dto.request.PriceUpdateDto;
 
 import java.util.List;
 
@@ -15,7 +18,7 @@ public interface GoodService {
     /**
      * 添加商品
      */
-    void add(GoodsEntity goodsEntity);
+    void add(GoodsDto goodsEntity);
 
     /**
      * 查询商品
@@ -24,14 +27,16 @@ public interface GoodService {
     /**
      * 查询商品
      */
-    List<GoodsEntity> selectOption(GoodsQueryParamEntity goodsEntity);
+    List<GoodsEntity> selectOption(GoodsSearchDto goodsEntity);
     /**
      * 修改商品价格
      */
-    void updatePrice(GoodsEntity goodsEntity);
+    void updatePrice(PriceUpdateDto goodsEntity);
 
     /**
      * 删除一个商品
      */
     void deleteGoods(Integer gid);
+
+    GoodsEntity queryGoodsById(Integer gid);
 }
