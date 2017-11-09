@@ -3,17 +3,11 @@ package com.qiang.service.dto.request;
  * Created by maxrocky on 2017/10/25.
  */
 
-import com.qiang.dao.entity.BannerEntity;
-import com.qiang.dao.entity.DiscussEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * @author maxrocky

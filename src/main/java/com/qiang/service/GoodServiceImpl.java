@@ -8,6 +8,7 @@ import com.qiang.dao.DiscussMapper;
 import com.qiang.dao.GoodsMapper;
 import com.qiang.dao.entity.GoodsEntity;
 import com.qiang.dao.entity.GoodsQueryParamEntity;
+import com.qiang.service.dto.request.DiscussDto;
 import com.qiang.service.dto.request.GoodsDto;
 import com.qiang.service.dto.request.GoodsSearchDto;
 import com.qiang.service.dto.request.PriceUpdateDto;
@@ -43,8 +44,6 @@ public class GoodServiceImpl implements GoodService {
 
     @Override
     public List<GoodsEntity> selectOption(GoodsSearchDto goodsEntity) {
-//        goodsEntity.setGname("%" + goodsEntity.getGname() + "%");
-
         return goodsMapper.selectOption(goodsEntity);
     }
 
@@ -61,5 +60,10 @@ public class GoodServiceImpl implements GoodService {
     @Override
     public GoodsEntity queryGoodsById(Integer gid) {
         return goodsMapper.queryGoodById(gid);
+    }
+
+    @Override
+    public void addDiscuss(DiscussDto discussDto) {
+        discussMapper.addDiscuss(discussDto);
     }
 }

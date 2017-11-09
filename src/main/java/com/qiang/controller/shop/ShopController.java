@@ -3,7 +3,7 @@ package com.qiang.controller.shop;
  * Created by maxrocky on 2017/10/25.
  */
 
-import com.qiang.common.GoodsResult;
+import com.qiang.common.ApiResult;
 import com.qiang.service.GoodService;
 import com.qiang.service.dto.request.GoodsDto;
 import com.qiang.service.dto.request.GoodsSearchDto;
@@ -24,6 +24,7 @@ import javax.validation.Valid;
 
 @RestController
 @Api(value = "商品模块")
+@RequestMapping(value = "/shop")
 public class ShopController {
     @Resource
     GoodService goodService;
@@ -36,9 +37,9 @@ public class ShopController {
      */
     @ApiOperation(value = "添加一个商品", notes = "Json", httpMethod = "POST")
     @RequestMapping(value = "/addGoods", method = RequestMethod.POST)
-    public GoodsResult add(GoodsDto goodsEntity) {
+    public ApiResult add(GoodsDto goodsEntity) {
         goodService.add(goodsEntity);
-        return GoodsResult.success("ok");
+        return ApiResult.success("ok");
     }
 
     /**
@@ -46,8 +47,8 @@ public class ShopController {
      */
     @ApiOperation(value = "查询单个商品", httpMethod = "GET")
     @RequestMapping(value = "/queryGoodById", method = RequestMethod.GET)
-    public GoodsResult queryGoods(Integer gid) {
-        return GoodsResult.success(goodService.queryGoodsById(gid));
+    public ApiResult queryGoods(Integer gid) {
+        return ApiResult.success(goodService.queryGoodsById(gid));
     }
 
     /**
@@ -57,9 +58,9 @@ public class ShopController {
      */
     @ApiOperation(value = "查询所有商品", httpMethod = "GET")
     @RequestMapping(value = "/selectGoods", method = RequestMethod.GET)
-    public GoodsResult select() {
+    public ApiResult select() {
 
-        return GoodsResult.success(goodService.select());
+        return ApiResult.success(goodService.select());
     }
 
     /**
@@ -69,28 +70,39 @@ public class ShopController {
      */
     @ApiOperation(value = "模糊查询商品,按照商品名称,详情,地址,价格区间", httpMethod = "POST")
     @RequestMapping(value = "/selectGoodsOption", method = RequestMethod.POST)
-    public GoodsResult selectOption(@RequestBody @Valid GoodsSearchDto goodsEntity) {
-        return GoodsResult.success(goodService.selectOption(goodsEntity));
+    public ApiResult selectOption(@RequestBody @Valid GoodsSearchDto goodsEntity) {
+        return ApiResult.success(goodService.selectOption(goodsEntity));
     }
 
     /**
      * 修改商品价格
      */
     @ApiOperation(value = "修改商品价格", httpMethod = "POST")
-    @RequestMapping(value = "updatePrice", method = RequestMethod.POST)
-    public GoodsResult updatePrice(PriceUpdateDto priceUpdateDto) {
+    @RequestMapping(value = "/updatePrice", method = RequestMethod.POST)
+    public ApiResult updatePrice(PriceUpdateDto priceUpdateDto) {
         goodService.updatePrice(priceUpdateDto);
-        return GoodsResult.success("ok");
+        return ApiResult.success("ok");
     }
 
     /**
      * 删除商品
      */
     @ApiOperation(value = "删除商品", httpMethod = "POST")
-    @RequestMapping(value = "deleteGoods", method = RequestMethod.POST)
-    public GoodsResult deleteGoods(Integer gid) {
+    @RequestMapping(value = "/deleteGoods", method = RequestMethod.POST)
+    public ApiResult deleteGoods(Integer gid) {
         goodService.deleteGoods(gid);
-        return GoodsResult.success("删除成功");
+        return ApiResult.success("删除成功");
+    }
+
+    /**
+     * 添加图片
+     */
+    @ApiOperation(value = "商品添加图片", httpMethod = "POST")
+    @RequestMapping(value = "/addPics", method = RequestMethod.POST)
+    public ApiResult addPics() {
+
+        return ApiResult.success("添加成功");
+
     }
 
 }

@@ -24,11 +24,6 @@ import java.util.List;
 @AllArgsConstructor
 @ApiModel(value = "商品信息载体")
 public class GoodsDto {
-    //商品ID
-    @NotNull
-    @ApiModelProperty(value = "商品id", required = true, example = "1")
-    private Integer gid;
-
     //商品名称
     @NotBlank
     @ApiModelProperty(value = "商品名称", required = true, example = "得力空调")
@@ -48,10 +43,4 @@ public class GoodsDto {
     @NotBlank
     @ApiModelProperty(value = "商品发货地", required = true, example = "广州市的顺去")
     private String gaddress;
-
-    //轮播图列表
-    @ApiModelProperty(value = "商品轮播图", required = true, example = "")
-    private List<BannerEntity> banner;
-
-
 }

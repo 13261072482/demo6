@@ -1,4 +1,4 @@
-package com.qiang.dao.entity;
+package com.qiang.service.dto.request;
 /**
  * Created by maxrocky on 2017/10/25.
  */
@@ -14,17 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BannerEntity {
-    /**
-     * 图片对应的id
-     */
-    private Integer bid;
+public class BannerDto {
 
     /**
-     * 图片对应的uil地址
+     * 商品图片集合
      */
     private byte[] bpic;
-
     /**
      * 图片关联的商品id
      */

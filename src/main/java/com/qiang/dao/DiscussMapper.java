@@ -1,9 +1,11 @@
+
 package com.qiang.dao;
 /**
  * Created by maxrocky on 2017/10/26.
  */
 
 import com.qiang.dao.entity.DiscussEntity;
+import com.qiang.service.dto.request.DiscussDto;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,13 +20,16 @@ import java.util.List;
 public interface DiscussMapper {
     /**
      * 查询评论
+     * @param gid
+     * @return
      */
     @Select("select * from discuss where gid = #{gid}")
     List<DiscussEntity> getDiscuss(Integer gid);
 
     /**
      * 插入评论
+     * @param discussDto
      */
-    @Insert("insert into discuss (gid, dcoutent) values (#{gid}, #{dcoutent})")
-    void addDiscuss(DiscussEntity discussEntity);
+    @Insert("insert into discuss (gid, dcontent, createTime) values (#{gid}, #{dcontent}, #{createTime})")
+    void addDiscuss(DiscussDto discussDto);
 }

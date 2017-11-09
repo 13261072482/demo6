@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @data 2017 guoyingqiang 27 8:57
  */
 @RestController
-@Api(value = "默认模块")
+//@Api(value = "默认模块")
 public class IndexController {
     @RequestMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
     @ApiModelProperty(value = "访问模块")

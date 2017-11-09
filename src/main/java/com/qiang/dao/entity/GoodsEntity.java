@@ -3,14 +3,10 @@ package com.qiang.dao.entity;
  * Created by maxrocky on 2017/10/25.
  */
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -44,7 +40,6 @@ public class GoodsEntity {
     //评论
 
     private List<DiscussEntity> discuss;
-
 
 
     //轮播图列表

@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by maxrocky on 2017/10/25.
  * 商品的添加,搜索,修改价格,软删除
+ * @author guoyingqiang
  */
 @Mapper
 public interface GoodsMapper {
@@ -30,25 +31,25 @@ public interface GoodsMapper {
      *
      * @return
      */
-    @Select("SELECT * FROM goods where gstatus = 1")
+    @Select("SELECT * FROM goods where g_status = 1")
     @Results(value = {
-            @Result(property = "gid", column = "gid"),
+            @Result(property = "gid", column = "g_id"),
             @Result(property = "discuss", column = "gid", many = @Many(select = "com.qiang.dao.DiscussMapper.getDiscuss")),
             @Result(property = "banner", column = "gid", many = @Many(select = "com.qiang.dao.BannerMapper.getBanners"))
     })
     List<GoodsEntity> select();
 
     /**
-     * 普通查询商品信息
-     *
+     * 普通查询商品
+     * @param goodsEntity
      * @return
      */
     @SelectProvider(type = GoodsProvider.class, method = "selectByParam"
     )
     @Results(value = {
-            @Result(property = "gid", column = "gid"),
-            @Result(property = "discuss", column = "gid", many = @Many(select = "com.qiang.dao.DiscussMapper.getDiscuss")),
-            @Result(property = "banner", column = "gid", many = @Many(select = "com.qiang.dao.BannerMapper.getBanners"))
+            @Result(property = "gid", column = "g_id"),
+            @Result(property = "discuss", column = "g_id", many = @Many(select = "com.qiang.dao.DiscussMapper.getDiscuss")),
+            @Result(property = "banner", column = "g_id", many = @Many(select = "com.qiang.dao.BannerMapper.getBanners"))
 
     })
     List<GoodsEntity> selectOption(GoodsSearchDto goodsEntity);
@@ -63,10 +64,17 @@ public interface GoodsMapper {
     void updatePrice(PriceUpdateDto goodsEntity);
 
     /**
-     * 软删除一个商品
+     * 通过商品id删除一个商品
+     * @param gid
      */
     @Update("update goods gstatus set gstatus = 0 where gid = #{gid}")
     void deleteGoods(Integer gid);
+
+    /**
+     * 通过id查询一个商品
+     * @param gid
+     * @return
+     */
     @Select("select * from goods where gid = #{gid} and gstatus = 1")
     GoodsEntity queryGoodById(Integer gid);
 }

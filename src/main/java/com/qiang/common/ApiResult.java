@@ -10,7 +10,7 @@ import lombok.Data;
  * @data 2017 guoyingqiang 25 19:05
  */
 @Data
-public class GoodsResult {
+public class ApiResult {
     /**
      * 状态值
      * state=1:成功
@@ -21,7 +21,7 @@ public class GoodsResult {
      * @param data 数据
      * @return 正常返回体
      */
-    public static GoodsResult success(Object data) {
+    public static ApiResult success(Object data) {
         return new SuccessApiResult(data);
     }
 
@@ -31,7 +31,7 @@ public class GoodsResult {
      * @param errorMessage 错误信息
      * @return 错误返回体
      */
-    public static GoodsResult error(String errorCode, String errorMessage) {
+    public static ApiResult error(String errorCode, String errorMessage) {
         return new ErrorApiResult(errorCode, errorMessage);
     }
 }

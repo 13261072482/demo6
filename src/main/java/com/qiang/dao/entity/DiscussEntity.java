@@ -18,7 +18,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DiscussEntity {
-    //评论id
+    /**
+     * 评论的id
+     */
     private Integer did;
 
     //评论内容

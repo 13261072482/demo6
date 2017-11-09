@@ -18,24 +18,24 @@ public class GoodsProvider {
      */
     public String selectByParam(final GoodsSearchDto goodsEntity) {
         return new SQL() {{
-            String condition = "gstatus = 1 ";
+            String condition = "g_status = 1 ";
             SELECT("*");
             FROM("goods");
             if (goodsEntity.getGname() != null && !"".equals(goodsEntity.getGname())) {
                 goodsEntity.setGname("%" + goodsEntity.getGname() + "%");
-                condition += "and gname like #{gname} ";
+                condition += "and g_name like #{gname} ";
             }
             if (goodsEntity.getGdetail() != null && !"".equals(goodsEntity.getGdetail())) {
                 goodsEntity.setGdetail("%" + goodsEntity.getGdetail() + "%");
-                condition += "and gdetail like #{gdetail} ";
+                condition += "and g_detail like #{gdetail} ";
             }
             if (goodsEntity.getGaddress() != null && !"".equals(goodsEntity.getGaddress())) {
                 goodsEntity.setGaddress("%" + goodsEntity.getGaddress() + "%");
-                condition += "and gaddress like #{gaddress} ";
+                condition += "and g_address like #{gaddress} ";
             }
             if (goodsEntity.getMinPrice() != null && goodsEntity.getMaxPrice() != null
                     && goodsEntity.getMinPrice() <= goodsEntity.getMaxPrice()) {
-                condition += "and gprice between #{minPrice} and #{maxPrice}";
+                condition += "and g_price between #{minPrice} and #{maxPrice}";
             }
             WHERE(condition);
         }}.toString();
